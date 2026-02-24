@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css"></style>
+  </head>
+
+  <body>
+    <button>Toggle de tekst</button>
+    <p>Deze tekst verschijnt/verdwijnt</p>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("button").on("click", function () {
+          $("p").toggle();
+        });
+      });
+    </script>
+  </body>
+</html>
