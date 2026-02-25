@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input {
+      padding: 5px;
+      margin: 10px;
+    }
+    button {
+      padding: 8px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+
+  <body>
+    <h2>Geef een kleur in en verander de achtergrond</h2>
+    <input type="text" id="kleurInput" placeholder="bv. blue, red, #ffcc00" />
+    <button id="veranderKleur">Verander achtergrond</button>
+    <button id="resetKleur">Reset achtergrond</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        let $kleurInput = $("#kleurInput");
+        let $body = $("body");
+        let $veranderKleur = $("#veranderKleur");
+        let $resetKleur = $("#resetKleur");
+
+        $veranderKleur.click(function () {
+          let $ingevoerdeKleur = $kleurInput.val();
+          $body.css("background-color", $ingevoerdeKleur);
+        });
+
+        $resetKleur.click(function () {
+          $body.css("background-color", "white");
+          $kleurInput.val("");
+        });
+      });
+    </script>
+  </body>
+</html>
