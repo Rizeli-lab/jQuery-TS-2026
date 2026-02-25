@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #hint {
+        cursor: pointer;
+      }
+      .tooltip {
+        margin: 8px;
+        padding: 8px;
+        border: 1px solid blue;
+        background-color: yellow;
+        position: absolute;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>jQuery tooltip</h1>
+    <label id="name">Naam : </label>
+    <input type="text" size="50" />
+    <span id="hint">help?</span>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      let $tooltip;
+      $(document).ready(function () {
+        $("#name, #hint")
+          .on("mouseover", function showToolTip() {
+            $(
+              '<div class="tooltip"> Type je naam in. Minstens 2 karakters </div>',
+            ).appendTo("body");
+            $tooltip = $(".tooltip");
+          })
+          .on("mousemove", function changeTooltipPosition(e) {
+            let tooltipX = e.pageX - 20;
+            let tooltipY = e.pageY + 25;
+            $tooltip.css({
+              top: tooltipY,
+              left: tooltipX,
+            });
+          })
+          .on("mouseout", function removetooltip() {
+            $tooltip.remove();
+          });
+      });
+    </script>
+  </body>
+</html>

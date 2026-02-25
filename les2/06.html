@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Klik ergens en kijk in de console voor de x en y coordinaat.</p>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(document).on("click", function (e) {
+          console.log(
+            "U heeft geklikt op x: " + e.pageX + " en op y: " + e.pageY,
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
