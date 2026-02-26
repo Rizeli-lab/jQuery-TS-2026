@@ -6,7 +6,7 @@
     <title>Document</title>
 
     <style>
-      .div {
+      div {
         margin: 10px;
         padding: 12px;
         border: 2px solid #666;
@@ -33,11 +33,17 @@
     <script>
       $(document).ready(function () {
         $("div")
-          .on("click", function () {
-            console.log()
+          .on("click", function (e) {
+            console.log("Event type is: " + event.type);
+            console.log("Target is: " + event.target);
+            console.log("Target is: " + event.target.innerHTML);
           })
-          .on("mouseover", function () {});
-          .on('mouseout', function(){})
+          .on("mouseover", function () {
+            $(this).css("width", "100px");
+          })
+          .on("mouseout", function () {
+            $(this).css("width", "60px");
+          });
       });
     </script>
   </body>
