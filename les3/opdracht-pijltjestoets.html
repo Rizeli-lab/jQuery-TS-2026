@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .kader {
+        border: 9px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <label>Naam</label><br />
+    <input type="text" name="naam" id="naam" /><br />
+    <br />
+    <label>Achternaam</label><br />
+    <input type="text" name="achternaam" id="achternaam" />
+
+    <div id="key"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("input").on("focusin", function () {
+          $(this).addClass("kader");
+        });
+        $("input").on("focusout", function () {
+          $(this).removeClass("kader");
+        });
+      });
+
+      $(document).on("keyup", function () {
+        let tekst = "";
+
+        switch (event.which) {
+          case 37:
+            tekst = "Keylinks";
+            break;
+          case 38:
+            tekst = "Keyomhoog";
+            break;
+          case 39:
+            tekst = "Keyrechts";
+            break;
+          case 40:
+            tekst = "Keyomlaag";
+            break;
+          default:
+            return;
+        }
+
+        $("#key").append("<div>" + tekst + "</div>");
+      });
+    </script>
+  </body>
+</html>
