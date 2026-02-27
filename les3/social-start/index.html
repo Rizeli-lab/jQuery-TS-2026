@@ -77,8 +77,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $(document).ready(function () {
-        $("#social").on("click", function () {
-          $(this).animate({ right: 10 }, { duration: 1000 });
+        let $social = $("#social");
+        let $share = $("#share");
+        let $close = $("#close");
+        $share.on("click", function () {
+          $social.animate({ right: 10 }, { duration: 1000 });
+          $share.fadeOut();
+        });
+
+        $close.on("click", function () {
+          $social.animate({ right: 10 }, { duration: 1000 });
+          $share.fadeIn();
         });
       });
     </script>
