@@ -40,15 +40,16 @@
       }
 
       a.disactivated {
-        color: red;
+        color: white;
       }
       a.activated {
-        color: blue;
+        color: red;
       }
     </style>
   </head>
   <body>
     <div class="container">
+      <h1>jQuery rocks the menu!</h1>
       <div id="menu">
         <ul id="unorderedList">
           <li><a href="#">Menu 1</a></li>
@@ -60,7 +61,7 @@
         </ul>
       </div>
       <div id="inhoud">
-        <div>
+        <div class="activated">
           <h1>Inhoud 1</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fugit
@@ -71,7 +72,7 @@
             molestias placeat, laudantium illum molestiae.
           </p>
         </div>
-        <div>
+        <div class="disactivated">
           <h1>Inhoud 2</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fugit
@@ -82,7 +83,7 @@
             molestias placeat, laudantium illum molestiae.
           </p>
         </div>
-        <div>
+        <div class="disactivated">
           <h1>Inhoud 3</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fugit
@@ -93,7 +94,7 @@
             molestias placeat, laudantium illum molestiae.
           </p>
         </div>
-        <div>
+        <div class="disactivated">
           <h1>Inhoud 4</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fugit
@@ -104,7 +105,7 @@
             molestias placeat, laudantium illum molestiae.
           </p>
         </div>
-        <div>
+        <div class="disactivated">
           <h1>Inhoud 5</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fugit
@@ -115,7 +116,7 @@
             molestias placeat, laudantium illum molestiae.
           </p>
         </div>
-        <div>
+        <div class="disactivated">
           <h1>Inhoud 6</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fugit
@@ -136,11 +137,29 @@
         $("#unorderedList li").hover(function () {
           $(this).animate(
             {
-              left: 100,
+              left: 140,
             },
             "slow",
+            function () {
+              $(this).stop();
+            },
           );
-          $(this).animate({ left: 0 }, "slow");
+          $(this).animate({ left: 0 }, "slow", function () {
+            $(this).stop();
+          });
+        });
+
+        $("#inhoud div").hide();
+        $("#inhoud div:eq(0)").show();
+
+        $("#unorderedList a").on("click", function () {
+          $(this).removeClass("disactivated").addClass("activated");
+          let index = $(this).parent().index();
+
+          $("#inhoud div:eq(" + index + ")")
+            .slideDown()
+            .siblings()
+            .slideUp();
         });
       });
     </script>
