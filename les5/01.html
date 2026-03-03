@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      <input id="g1" />
+      <input id="g2" />
+      <button id="bereken1">Bereken</button>
+      <input id="result1" />
+    </p>
+    <p>
+      <input id="g3" />
+      <input id="g4" />
+      <button id="bereken2">Bereken</button>
+      <input id="result2" />
+    </p>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#bereken1").on("click", function () {
+          berekenen("#g1", "#g2", "#result1");
+          // let optelling = parseInt($("#g1").val()) + parseInt($("#g2").val());
+          // $("#result1").val(optelling);
+        });
+
+        $("#bereken2").on("click", function () {
+          berekenen("#g3", "#g4", "#result2");
+        });
+
+        function berekenen(inputveld1, inputveld2, uitkomst) {
+          let optelling =
+            parseInt($(inputveld1).val()) + parseInt($(inputveld2).val());
+          $(uitkomst).val(optelling);
+        }
+      });
+    </script>
+  </body>
+</html>

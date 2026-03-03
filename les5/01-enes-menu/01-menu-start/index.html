@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Menu with jQuery</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="css/style.css"
+      type="text/css"
+      media="screen"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <ul id="menu">
+        <li>
+          <a href="#">
+            <i class="icon_about"></i>
+            <span class="title">About</span>
+            <span class="description">Learn about us and our services</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="icon_work"></i>
+            <span class="title">Work</span>
+            <span class="description">See our work and portfolio</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="icon_help"></i>
+            <span class="title">Help</span>
+            <span class="description">Talk to our support</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="icon_search"></i>
+            <span class="title">Search</span>
+            <span class="description">Search our website</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#menu li").hover(
+          //   function () {
+          //     $(this).find("a").stop().animate({ bottom: -15 }, "slow");
+          //     $(this).find("i").stop().animate({ top: -5 }, "slow");
+          //   },
+          //   function () {
+          //     $(this).find("a").stop().animate({ bottom: -95 }, "slow");
+          //     $(this).find("i").stop().animate({ top: 50 }, "slow");
+          //   },
+
+          function () {
+            animeer($(this).find("a"), { bottom: -15 }, "slow");
+            animeer($(this).find("i"), { top: -5 }, "slow");
+          },
+
+          function () {
+            animeer($(this).find("a"), { bottom: -95 }, "slow");
+            animeer($(this).find("i"), { top: 50 }, "slow");
+          },
+        );
+
+        function animeer(selectie, propertyWaarde, speed) {
+          selectie.stop().animate(propertyWaarde, speed);
+        }
+      });
+    </script>
+  </body>
+</html>
