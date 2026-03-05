@@ -24,3 +24,10 @@
   border: 1px solid blue;
   background-color: rgba(12, 141, 106, 0.662);
 }
+
+#maandError,
+#dagError {
+  color: red;
+  font-weight: bold;
+  padding: 10px;
+}

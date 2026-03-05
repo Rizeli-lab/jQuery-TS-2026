@@ -13,11 +13,13 @@
     <form>
       <label>Geboortedag:</label>
       <input type="text" name="dag" id="dag" value="" />
+      <span class="error" id="dagError"></span>
     </form>
 
     <form>
       <label>Geboortemaand:</label>
       <input type="text" name="maand" id="maand" value="" />
+      <span class="error" id="maandError"></span>
     </form>
 
     <button id="btn">Ontdek je sterrenbeeld</button>
@@ -38,6 +40,8 @@
         let $tooltip;
         let dagok = false;
         let maandok = false;
+        let dagError = $("#dagError");
+        let maandError = $("#maandError");
 
         $dag
           .on("mouseover", function showToolTip() {
@@ -62,12 +66,13 @@
             let dag = parseInt($dag.val(), 10);
             if (dag === "" || isNaN(dag)) {
               dag = false;
-              alert("Dag moet een nummer zijn tussen 1 en 31!");
+              dagError.text("Dag moet een nummer zijn tussen 1 en 31!");
             } else if (dag < 1 || dag > 31) {
               dagok = false;
-              alert("Dag moet tussen 1 en 31 liggen.");
+              dagError.text("Dag moet tussen 1 en 31 liggen.");
             } else {
               dagok = true;
+              dagError.text("");
             }
           });
 
@@ -94,12 +99,13 @@
             let maand = parseInt($maand.val(), 10);
             if (maand === "" || isNaN(maand)) {
               maand = false;
-              alert("Maand moet een nummer zijn tussen 1 en 12!");
+              maandError.text("Maand moet een nummer zijn tussen 1 en 12!");
             } else if (maand < 1 || maand > 12) {
               maandok = false;
-              alert("Maand moet tussen 1 en 12 liggen.");
+              maandError.text("Maand moet tussen 1 en 12 liggen.");
             } else {
               maandok = true;
+              maandError.text("");
             }
           });
 
