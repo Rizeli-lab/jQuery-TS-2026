@@ -1,0 +1,26 @@
+.tooltip {
+  margin: 8px;
+  padding: 6px;
+  color: white;
+  font-weight: bolder;
+  border: 1px solid blue;
+  background-color: rgba(12, 141, 106, 0.662);
+  position: absolute;
+  z-index: 2;
+}
+
+#dag {
+  margin-bottom: 20px;
+}
+#maand {
+  margin-bottom: 20px;
+}
+
+#btn {
+  margin: 8px;
+  padding: 8px;
+  color: white;
+  font-weight: bolder;
+  border: 1px solid blue;
+  background-color: rgba(12, 141, 106, 0.662);
+}

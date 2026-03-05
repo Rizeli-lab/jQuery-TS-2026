@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../Eindopdracht-sterrenbeeld/css/style.css" />
+  </head>
+  <body>
+    <h1>Wat is jouw sterrenbeeld</h1>
+    <h4>Geef de dag en maand van jouw geboortedatum in.</h4>
+
+    <form>
+      <label>Geboortedag:</label>
+      <input type="text" name="dag" id="dag" value="" />
+    </form>
+
+    <form>
+      <label>Geboortemaand:</label>
+      <input type="text" name="maand" id="maand" value="" />
+    </form>
+
+    <button id="btn">Ontdek je sterrenbeeld</button>
+
+    <h4>Jouw sterrenbeeld:</h4>
+
+    <p id="resultaat"></p>
+    <img src="" id="sterimg" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        let $dag = $("#dag");
+        let $maand = $("#maand");
+        let $btn = $("#btn");
+        let $resultaat = $("#resultaat");
+        let $sterimg = $("#sterimg");
+        let $tooltip;
+        let dagok = false;
+        let maandok = false;
+
+        $dag
+          .on("mouseover", function showToolTip() {
+            $('<div class="tooltip"> Geef je geboortedag in. </div>').appendTo(
+              "body",
+            );
+            $tooltip = $(".tooltip");
+          })
+          .on("mousemove", function changeTooltipPosition(e) {
+            let tooltipX = e.pageX + 30;
+            let tooltipY = e.pageY - 25;
+            $tooltip.css({
+              top: tooltipY,
+              left: tooltipX,
+            });
+          })
+          .on("focus", function removeText() {
+            $tooltip.remove();
+          })
+
+          .on("blur", function () {
+            let dag = parseInt($dag.val(), 10);
+            if (dag === "" || isNaN(dag)) {
+              dag = false;
+              alert("Dag moet een nummer zijn tussen 1 en 31!");
+            } else if (dag < 1 || dag > 31) {
+              dagok = false;
+              alert("Dag moet tussen 1 en 31 liggen.");
+            } else {
+              dagok = true;
+            }
+          });
+
+        $maand
+          .on("mouseover", function showToolTip() {
+            $(
+              '<div class="tooltip"> Geef je geboortemaand in. </div>',
+            ).appendTo("body");
+            $tooltip = $(".tooltip");
+          })
+          .on("mousemove", function changeTooltipPosition(e) {
+            let tooltipX = e.pageX - 50;
+            let tooltipY = e.pageY + 15;
+            $tooltip.css({
+              top: tooltipY,
+              left: tooltipX,
+            });
+          })
+          .on("mouseout", function removeText() {
+            $tooltip.remove();
+          })
+
+          .on("blur", function () {
+            let maand = parseInt($maand.val(), 10);
+            if (maand === "" || isNaN(maand)) {
+              maand = false;
+              alert("Maand moet een nummer zijn tussen 1 en 12!");
+            } else if (maand < 1 || maand > 12) {
+              maandok = false;
+              alert("Maand moet tussen 1 en 12 liggen.");
+            } else {
+              maandok = true;
+            }
+          });
+
+        $btn.on("click", function () {
+          $dag.blur();
+          $maand.blur();
+
+          if (dagok === false || maandok === false) {
+            $resultaat.text("");
+            $sterimg.attr("src", "");
+            return;
+          }
+
+          let dag = parseInt($dag.val(), 10);
+          let maand = parseInt($maand.val(), 10);
+          let sterrenbeeld = "";
+          let img = "img/";
+
+          if ((maand == 1 && dag <= 19) || (maand == 12 && dag <= 21)) {
+            sterrenbeeld = "Steenbok";
+            img = "img/Steenbok.jpg";
+          } else if ((maand == 1 && dag >= 20) || (maand == 2 && dag <= 18)) {
+            sterrenbeeld = "Waterman";
+            img = "img/Waterman.jpg";
+          } else if ((maand == 2 && dag >= 19) || (maand == 3 && dag <= 20)) {
+            sterrenbeeld = "Vissen";
+            img = "img/Vissen.jpg";
+          } else if ((maand == 3 && dag >= 21) || (maand == 4 && dag <= 20)) {
+            sterrenbeeld = "Ram";
+            img = "img/Ram.jpg";
+          } else if ((maand == 4 && dag >= 21) || (maand == 5 && dag <= 21)) {
+            sterrenbeeld = "Stier";
+            img = "img/Stier.jpg";
+          } else if ((maand == 5 && dag >= 22) || (maand == 6 && dag <= 21)) {
+            sterrenbeeld = "Tweelingen";
+            img = "img/Tweelingen.jpg";
+          } else if ((maand == 6 && dag >= 22) || (maand == 7 && dag <= 22)) {
+            sterrenbeeld = "Kreeft";
+            img = "img/Kreeft.jpg";
+          } else if ((maand == 7 && dag >= 23) || (maand == 8 && dag <= 22)) {
+            sterrenbeeld = "Leeuw";
+            img = "img/Leeuw.jpg";
+          } else if ((maand == 8 && dag >= 23) || (maand == 9 && dag <= 22)) {
+            sterrenbeeld = "Maagd";
+            img = "img/Maagd.jpg";
+          } else if ((maand == 9 && dag >= 23) || (maand == 10 && dag <= 22)) {
+            sterrenbeeld = "Weegschaal";
+            img = "img/Weegschaal.jpg";
+          } else if ((maand == 10 && dag >= 23) || (maand == 11 && dag <= 22)) {
+            sterrenbeeld = "Schorpioen";
+            img = "img/Schorpioen.jpg";
+          } else {
+            sterrenbeeld = "Boogschutter";
+            img = "img/Boogschutter.jpg";
+          }
+
+          $resultaat.text(sterrenbeeld);
+          $sterimg.attr("src", img);
+        });
+      });
+    </script>
+  </body>
+</html>
